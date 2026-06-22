@@ -1,580 +1,742 @@
 <!DOCTYPE html>
-<html lang="es" x-data="app()" x-init="init()">
-
+<html lang="es"></html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APEX SIM ACADEMY — Entrena como un Profesional</title>
 
   <!-- ── FONTS ── -->
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- ── TAILWIND CSS (utility classes) ── -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- ── CUSTOM STYLES ── -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="styles.css">
 
   <!-- ── APP LOGIC (must load before Alpine so app() is defined) ── -->
-  <script src="js/app.js"></script>
+<script src="app.js" defer></script>
 
   <!-- ── ALPINE.JS (defer — initialises after DOM + app.js are ready) ── -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
+<button id="backToTop" class="back-to-top">↑</button>
+
 <body x-cloak>
 
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <!-- 1. NAVBAR FLOTANTE                                            -->
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <nav class="fixed top-0 left-0 right-0 z-50" style="background:#111115; border-bottom:1px solid rgba(255,255,255,0.06);">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-      <!-- LOGO -->
-      <a href="#" style="text-decoration:none;">
-        <span class="font-display" style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.75rem; color:#FFFFFF; letter-spacing:-0.02em; font-style:italic;">
-          APE<span style="color:#C8F135;">X</span>
-        </span>
+  <!-- ══════════════════════════════════════════════════════════════ -->
+ <!-- NAVBAR -->
+<nav class="fixed top-0 left-0 right-0 z-50">
+
+  <div
+    style="
+      max-width:1400px;
+      margin:20px auto;
+      padding:18px 28px;
+      background:rgba(8,8,8,.85);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:18px;
+      box-shadow:
+      0 20px 60px rgba(0,0,0,.45),
+      0 0 0 1px rgba(255,255,255,.03);
+    "
+    class="flex items-center justify-between"
+  >
+
+    <!-- LOGO -->
+    <a href="#">
+      <img
+        src="assets/marca.png"
+        alt="APEX"
+        style="height:42px;width:auto;display:block;"
+      >
+    </a>
+
+    <!-- MENÚ -->
+    <div class="flex items-center gap-10">
+      <a href="#hero">Inicio</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#simuladores">Simulador</a>
+      <a href="#academia">Academia</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#planes">Planes</a>
+      <a href="#testimonios">Testimonios</a>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="flex items-center gap-4">
+
+      <div
+        style="
+        padding:10px 18px;
+        border:1px solid rgba(255,45,85,.4);
+        border-radius:8px;
+        color:#FF2D55;
+        font-size:.7rem;
+        font-weight:700;
+        letter-spacing:.15em;
+        text-transform:uppercase;
+        ">
+        ● Cupos críticos
+      </div>
+
+      <a href="#planes">
+        <button
+          style="
+          background:#C8F135;
+          color:#0B0B0F;
+          border:none;
+          padding:14px 24px;
+          font-weight:800;
+          cursor:pointer;
+          ">
+          Reservar →
+        </button>
       </a>
 
-      <!-- NAV LINKS -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#"           style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.78rem; color:#CCCCCC; text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='#CCCCCC'">INICIO</a>
-        <a href="#beneficios" style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.78rem; color:#CCCCCC; text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='#CCCCCC'">BENEFICIOS</a>
-        <a href="#simuladores" style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.78rem; color:#CCCCCC; text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='#CCCCCC'">SIMULADOR</a>
-        <a href="#"           style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.78rem; color:#CCCCCC; text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='#CCCCCC'">ACADEMIA</a>
-        <a href="#planes"     style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.78rem; color:#CCCCCC; text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='#CCCCCC'">CURSOS</a>
-        <a href="#planes"     style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.78rem; color:#CCCCCC; text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='#CCCCCC'">PLANES</a>
-        <a href="#testimonios" style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:0.78rem; color:#CCCCCC; text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='#CCCCCC'">TESTIMONIOS</a>
-      </div>
-
-      <!-- RIGHT: CUPOS CRÍTICOS + CTA -->
-      <div class="flex items-center gap-4">
-        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded" style="background:rgba(255,45,85,0.1); border:1px solid rgba(255,45,85,0.4);">
-          <div class="w-2 h-2 rounded-full blink-red" style="background:#FF2D55;"></div>
-          <span style="color:#FF2D55; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:0.15em; font-size:0.65rem; text-transform:uppercase;">CUPOS CRÍTICOS</span>
-        </div>
-        <a href="#planes" style="text-decoration:none;">
-          <button style="background:#C8F135; color:#0B0B0F; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; padding:0.6rem 1.4rem; border:none; cursor:pointer; display:flex; align-items:center; gap:0.5rem; transition:background 0.2s;" onmouseover="this.style.background='#d4ff3d'" onmouseout="this.style.background='#C8F135'">
-            RESERVAR <span style="font-size:0.9rem;">›</span>
-          </button>
-        </a>
-      </div>
-
     </div>
-  </nav>
+
+  </div>
+
+</nav>
 
   <!-- ══════════════════════════════════════════════════════════════ -->
   <!-- 2. HERO SECTION                                               -->
   <!-- ══════════════════════════════════════════════════════════════ -->
-  <section id="hero" class="relative overflow-hidden" style="min-height:100vh; z-index:1;">
+  <section id="hero" class="relative overflow-hidden"
+style="min-height:110vh; z-index:1;">
 
     <!-- FONDOS + ILUSTRACIÓN SVG F1 -->
-    <div class="absolute inset-0">
-      <div style="position:absolute;inset:0;background:linear-gradient(105deg,#1a1a1e 0%,#1a1a1e 40%,#2a2a2e 55%,#1e1e22 100%);"></div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(180deg,transparent,rgba(15,15,18,0.85));"></div>
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,15,18,0.92) 0%,rgba(15,15,18,0.7) 35%,rgba(15,15,18,0.15) 60%,transparent 100%);"></div>
-      <div style="position:absolute;top:10%;right:0;width:65%;height:80%;background:radial-gradient(ellipse at 80% 40%,rgba(180,230,30,0.07) 0%,transparent 60%);"></div>
+   <div 
+  class="absolute inset-0"
+  style="
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(8,8,8,.97) 0%,
+        rgba(8,8,8,.90) 22%,
+        rgba(8,8,8,.55) 42%,
+        rgba(8,8,8,.10) 70%
+      ),
+      url('assets/hero.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+  ">
+</div>
 
-      <!-- Auto F1 — SVG inline -->
-      <svg viewBox="0 0 1200 680" xmlns="http://www.w3.org/2000/svg" style="position:absolute;right:-2%;bottom:8%;width:72%;height:auto;opacity:0.97;" preserveAspectRatio="xMidYMid meet">
-        <ellipse cx="620" cy="640" rx="420" ry="28" fill="rgba(0,0,0,0.55)"/>
-        <ellipse cx="620" cy="640" rx="320" ry="16" fill="rgba(100,180,20,0.07)"/>
-        <path d="M 240 390 Q 260 340 310 320 L 900 310 Q 960 315 990 350 L 1010 390 Q 980 420 920 430 L 280 435 Q 245 425 240 390 Z" fill="#3a6b05" stroke="#2a5003" stroke-width="1.5"/>
-        <path d="M 310 310 Q 380 270 500 255 L 780 250 Q 870 255 900 310 Z" fill="#4d8c0a" stroke="#3a6b05" stroke-width="1"/>
-        <path d="M 490 255 Q 510 215 560 205 L 680 205 Q 720 210 740 250 L 700 252 Q 660 230 620 228 Q 575 229 540 252 Z" fill="#1a1a1a" stroke="#2d2d2d" stroke-width="1"/>
-        <path d="M 490 255 Q 510 215 560 205 L 680 205 Q 720 210 740 250" fill="none" stroke="#C8F135" stroke-width="2.5"/>
-        <path d="M 90 380 Q 110 365 160 360 L 240 370 Q 250 375 245 385 L 235 395 Q 200 390 150 395 Q 110 400 95 395 Z" fill="#4d8c0a" stroke="#3a6b05" stroke-width="1.5"/>
-        <path d="M 80 388 L 240 375 Q 250 378 248 390 L 80 400 Z" fill="#3a6b05"/>
-        <path d="M 80 385 L 250 370" fill="none" stroke="#C8F135" stroke-width="2"/>
-        <path d="M 80 393 L 248 385" fill="none" stroke="#C8F135" stroke-width="1.2"/>
-        <path d="M 88 380 Q 75 370 65 375 Q 60 388 78 398 Z" fill="#2d5c02"/>
-        <path d="M 245 370 L 270 340 L 278 345 L 255 378 Z" fill="#3a6b05" stroke="#2a5003" stroke-width="0.8"/>
-        <path d="M 258 368 L 280 335 L 287 340 L 266 372 Z" fill="#2d5c02"/>
-        <path d="M 310 320 Q 340 280 420 270 L 520 268 Q 490 310 480 340 L 310 345 Z" fill="#4a8508" stroke="#3a6b05" stroke-width="1"/>
-        <path d="M 760 268 L 860 270 Q 920 285 920 320 L 780 340 L 760 310 Z" fill="#4a8508" stroke="#3a6b05" stroke-width="1"/>
-        <ellipse cx="390" cy="285" rx="28" ry="18" fill="#1a1a1a" stroke="#C8F135" stroke-width="1.5"/>
-        <ellipse cx="390" cy="285" rx="22" ry="13" fill="#0d0d0d"/>
-        <ellipse cx="840" cy="288" rx="25" ry="16" fill="#1a1a1a" stroke="#C8F135" stroke-width="1.2"/>
-        <path d="M 580 205 Q 600 185 630 182 Q 655 182 665 205 Z" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
-        <path d="M 900 315 Q 970 320 1000 350 L 1005 380 Q 975 395 920 390 L 900 315 Z" fill="#3a6b05" stroke="#2a5003" stroke-width="1.5"/>
-        <rect x="930" y="240" width="14" height="90" rx="2" fill="#2d5c02" stroke="#1e3e01" stroke-width="1"/>
-        <rect x="928" y="242" width="18" height="88" rx="2" fill="none" stroke="#C8F135" stroke-width="0.8"/>
-        <path d="M 890 235 Q 900 225 1020 222 Q 1050 225 1055 235 L 1050 248 Q 1020 240 900 243 Q 892 248 890 248 Z" fill="#3a6b05" stroke="#2a5003" stroke-width="1.5"/>
-        <path d="M 892 236 L 1052 224" fill="none" stroke="#C8F135" stroke-width="1.5"/>
-        <path d="M 900 225 Q 910 212 1020 210 Q 1045 213 1048 222 L 1020 222 Q 910 225 900 225 Z" fill="#2d5c02"/>
-        <rect x="970" y="210" width="4" height="15" rx="1" fill="#666"/>
-        <circle cx="195" cy="430" r="62" fill="#111" stroke="#333" stroke-width="3"/>
-        <circle cx="195" cy="430" r="52" fill="#0d0d0d" stroke="#222" stroke-width="1"/>
-        <circle cx="195" cy="430" r="38" fill="#151515"/>
-        <circle cx="195" cy="430" r="32" fill="none" stroke="#3a3a3a" stroke-width="2"/>
-        <circle cx="195" cy="430" r="20" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
-        <line x1="195" y1="410" x2="195" y2="398" stroke="#444" stroke-width="3"/>
-        <line x1="195" y1="450" x2="195" y2="462" stroke="#444" stroke-width="3"/>
-        <line x1="175" y1="430" x2="163" y2="430" stroke="#444" stroke-width="3"/>
-        <line x1="215" y1="430" x2="227" y2="430" stroke="#444" stroke-width="3"/>
-        <line x1="181" y1="416" x2="173" y2="408" stroke="#444" stroke-width="2.5"/>
-        <line x1="209" y1="444" x2="217" y2="452" stroke="#444" stroke-width="2.5"/>
-        <circle cx="195" cy="430" r="8" fill="#2a2a2a" stroke="#C8F135" stroke-width="1.5"/>
-        <path d="M 158 400 Q 175 375 195 370 Q 215 375 232 400 L 235 430 Q 215 450 195 455 Q 175 450 158 430 Z" fill="none" stroke="#C8F135" stroke-width="1"/>
-        <circle cx="870" cy="438" r="72" fill="#111" stroke="#333" stroke-width="3"/>
-        <circle cx="870" cy="438" r="60" fill="#0d0d0d" stroke="#222" stroke-width="1"/>
-        <circle cx="870" cy="438" r="45" fill="#151515"/>
-        <circle cx="870" cy="438" r="38" fill="none" stroke="#3a3a3a" stroke-width="2"/>
-        <circle cx="870" cy="438" r="22" fill="#1e1e1e" stroke="#2a2a2a" stroke-width="1.5"/>
-        <line x1="870" y1="415" x2="870" y2="400" stroke="#444" stroke-width="4"/>
-        <line x1="870" y1="461" x2="870" y2="476" stroke="#444" stroke-width="4"/>
-        <line x1="847" y1="438" x2="832" y2="438" stroke="#444" stroke-width="4"/>
-        <line x1="893" y1="438" x2="908" y2="438" stroke="#444" stroke-width="4"/>
-        <line x1="854" y1="422" x2="843" y2="411" stroke="#444" stroke-width="3"/>
-        <line x1="886" y1="454" x2="897" y2="465" stroke="#444" stroke-width="3"/>
-        <circle cx="870" cy="438" r="10" fill="#2a2a2a" stroke="#C8F135" stroke-width="1.5"/>
-        <path d="M 815 400 Q 840 372 870 368 Q 900 372 925 400 L 928 440 Q 905 465 870 470 Q 835 465 814 440 Z" fill="none" stroke="rgba(200,241,53,0.3)" stroke-width="1"/>
-        <path d="M 540 230 Q 560 200 620 195 Q 680 195 700 230" fill="none" stroke="#888" stroke-width="8" stroke-linecap="round"/>
-        <path d="M 540 230 Q 560 200 620 195 Q 680 195 700 230" fill="none" stroke="#aaa" stroke-width="3" stroke-linecap="round"/>
-        <path d="M 915 340 L 945 305 L 952 310 L 922 347 Z" fill="#3a6b05"/>
-        <path d="M 320 325 Q 400 295 520 275 L 530 285 Q 410 305 330 338 Z" fill="#C8F135" opacity="0.7"/>
-        <path d="M 760 275 L 880 295 Q 900 310 895 325 L 775 305 Z" fill="#C8F135" opacity="0.5"/>
-        <text x="580" y="370" font-family="Arial Black, sans-serif" font-weight="900" font-size="38" fill="#C8F135" opacity="0.9">25</text>
-        <text x="330" y="335" font-family="Arial, sans-serif" font-weight="700" font-size="11" fill="white" opacity="0.7" letter-spacing="1">MAHLE</text>
-        <text x="640" y="290" font-family="Arial, sans-serif" font-weight="400" font-size="9" fill="white" opacity="0.5">aramco</text>
-        <path d="M 800 440 Q 840 480 870 482 Q 900 480 938 440" fill="none" stroke="#ffdd00" stroke-width="2.5" opacity="0.6"/>
-        <ellipse cx="530" cy="498" rx="380" ry="18" fill="rgba(100,180,10,0.06)"/>
-        <circle cx="148" cy="385" r="4" fill="#ff2200" opacity="0.9"/>
-        <circle cx="148" cy="395" r="3" fill="#ff6600" opacity="0.7"/>
-      </svg>
+<!-- CONTENIDO HERO — texto izquierda -->
+<div
+  class="relative max-w-7xl mx-auto flex flex-col justify-center"
+  style="
+    min-height:100vh;
+    padding-top:80px;
+    padding-bottom:180px;
+    padding-left:40px;
+    z-index:2;
+  "
+>
 
-      <!-- Piloto con casco -->
-      <svg viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg" style="position:absolute;right:36%;bottom:22%;width:9%;height:auto;opacity:0.95;" preserveAspectRatio="xMidYMid meet">
-        <path d="M 60 160 Q 55 200 50 250 L 150 250 Q 145 200 140 160 Q 125 145 100 142 Q 75 145 60 160 Z" fill="#4d8c0a"/>
-        <path d="M 55 165 Q 40 160 38 175 Q 38 200 55 205 Q 58 190 60 175 Z" fill="#3a6b05"/>
-        <path d="M 145 165 Q 160 160 162 175 Q 162 200 145 205 Q 142 190 140 175 Z" fill="#3a6b05"/>
-        <rect x="88" y="135" width="24" height="20" rx="4" fill="#2a2a2a"/>
-        <ellipse cx="100" cy="95" rx="52" ry="55" fill="#3a7005"/>
-        <path d="M 52 90 Q 55 65 100 60 Q 145 65 148 90 Q 145 108 100 112 Q 55 108 52 90 Z" fill="#1a1a1a"/>
-        <path d="M 60 85 Q 70 68 100 65 Q 115 65 130 72" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="3" stroke-linecap="round"/>
-        <path d="M 55 90 Q 100 70 145 90" fill="none" stroke="#C8F135" stroke-width="2.5"/>
-        <path d="M 52 100 Q 100 118 148 100" fill="none" stroke="#C8F135" stroke-width="1.5"/>
-        <path d="M 85 42 Q 100 35 115 42 L 112 58 Q 100 52 88 58 Z" fill="#2d5c02"/>
-        <path d="M 88 44 L 88 58 M 94 42 L 94 57 M 100 41 L 100 57 M 106 42 L 106 57 M 112 44 L 112 58" stroke="#1a3a01" stroke-width="1.2"/>
-        <path d="M 55 130 Q 50 120 60 115 Q 75 112 100 110 Q 125 112 140 115 Q 150 120 145 130" fill="none" stroke="#333" stroke-width="4"/>
-      </svg>
+  <div style="max-width:420px;">
+
+    <h1
+      style="
+        font-family:'Bebas Neue',sans-serif;
+        font-size:clamp(4rem,7vw,7rem);;
+        font-weight:400;
+        line-height:.9;
+        letter-spacing:.01em;
+        text-transform:uppercase;
+        margin-bottom:1.5rem;
+      "
+    >
+      <span style="display:block;color:#FFFFFF;">ENTRENÁ COMO</span>
+      <span style="display:block;color:#FFFFFF;">
+        UN <em style="color:#C8F135;font-style:italic;">PILOTO</em>
+      </span>
+    </h1>
+
+    <p
+      style="
+        color:rgba(255,255,255,.75);
+        font-size:.92rem;
+        line-height:1.6;
+        max-width:300px;
+        margin-bottom:2rem;
+      "
+    >
+      Desarrollá tu técnica a través de simuladores profesionales,
+      programas guiados y práctica realista.
+    </p>
+
+    <!-- Oferta -->
+    <div class="offer-timer">
+      <span class="offer-dot"></span>
+      <span>Oferta expira en</span>
+      <strong id="countdown">15:00</strong>
     </div>
 
-    <!-- CONTENIDO HERO — texto izquierda -->
-    <div class="relative max-w-7xl mx-auto px-8 flex flex-col justify-center" style="min-height:100vh; padding-top:80px; padding-bottom:180px; z-index:2;">
-      <div class="max-w-lg">
-        <h1 style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(4rem,9vw,8rem); line-height:0.9; letter-spacing:-0.01em; margin-bottom:1.5rem; text-transform:uppercase;">
-          <span style="display:block; color:#FFFFFF;">ENTRENÁ COMO</span>
-          <span style="display:block; color:#FFFFFF;">UN <em style="color:#C8F135; font-style:italic;">PILOTO</em></span>
-        </h1>
+    <br>
 
-        <p style="color:rgba(255,255,255,0.75); font-size:1rem; line-height:1.6; max-width:340px; margin-bottom:2rem;">
-          Desarrollá tu técnica a través de simuladores profesionales, programas guiados y práctica realista.
-        </p>
+    <!-- CTA -->
+    <a href="#planes" style="text-decoration:none;">
+      <button
+        class="hero-cta"
+        style="
+          background:#C8F135;
+          color:#0B0B0F;
+          border:none;
+          padding:.95rem 2rem;
+          border-radius:8px;
+          font-family:'Inter',sans-serif;
+          font-size:.9rem;
+          font-weight:800;
+          letter-spacing:.04em;
+          text-transform:uppercase;
+          cursor:pointer;
+        "
+      >
+        RESERVAR MI LUGAR →
+      </button>
+    </a>
 
-        <!-- Countdown urgencia -->
-        <div class="flex items-center gap-2 mb-4">
-          <div class="w-2 h-2 rounded-full blink-red" style="background:#FF2D55; flex-shrink:0;"></div>
-          <span style="color:#FF2D55; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase;">
-            OFERTA EXPIRA EN:
-            <span x-text="pad(countdown.m)" style="color:#fff;"></span>:<span x-text="pad(countdown.s)" style="color:#fff;"></span> MIN
-          </span>
-        </div>
+  </div>
 
-        <!-- CTA -->
-        <a href="#planes" style="text-decoration:none;">
-          <button class="pulse-glow"
-            style="background:#C8F135; color:#0B0B0F; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1rem; letter-spacing:0.12em; text-transform:uppercase; padding:1rem 2.2rem; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:0.6rem; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));"
-            onmouseover="this.style.background='#d4ff3d'; this.style.transform='translateY(-2px)'"
-            onmouseout="this.style.background='#C8F135'; this.style.transform='translateY(0)'">
-            RESERVAR MI LUGAR →
-          </button>
-        </a>
+</div>
+
+   <!-- BARRA DE RECORRIDO — 5 pasos -->
+<div class="hero-journey">
+
+  <div class="hero-journey-inner">
+
+    <div class="journey-step">
+      <div class="journey-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 2"/>
+        </svg>
       </div>
+      <span>Evaluación<br>Inicial</span>
     </div>
 
-    <!-- BARRA DE PROCESO — 5 pasos -->
-    <div class="absolute bottom-0 left-0 right-0" style="background:rgba(10,10,12,0.92); border-top:1px solid rgba(200,241,53,0.15); backdrop-filter:blur(8px);">
-      <div class="max-w-5xl mx-auto px-6 py-5">
-        <div class="flex items-center justify-between">
+    <div class="journey-line"></div>
 
-          <!-- Paso 1 -->
-          <div class="flex flex-col items-center gap-2" style="flex:1;">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center" style="border:1.5px solid rgba(200,241,53,0.5); background:transparent;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; text-align:center; color:#E2E8F0; line-height:1.3;">EVALUACIÓN<br>INICIAL</span>
-          </div>
-
-          <div style="flex:0.5; height:1px; border-top:1.5px dashed rgba(200,241,53,0.3);"></div>
-
-          <!-- Paso 2 -->
-          <div class="flex flex-col items-center gap-2" style="flex:1;">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center" style="border:1.5px solid rgba(200,241,53,0.5); background:transparent;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M12 11v4M10 17h4"/><circle cx="12" cy="12" r="10"/></svg>
-            </div>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; text-align:center; color:#E2E8F0; line-height:1.3;">FUNDAMENTOS<br>DE CONDUCCIÓN</span>
-          </div>
-
-          <div style="flex:0.5; height:1px; border-top:1.5px dashed rgba(200,241,53,0.3);"></div>
-
-          <!-- Paso 3 — ACTIVO -->
-          <div class="flex flex-col items-center gap-2" style="flex:1;">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center node-pulse" style="border:1.5px solid #C8F135; background:rgba(200,241,53,0.08);">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 4v1M12 19v1M4 12h1M19 12h1"/></svg>
-            </div>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; text-align:center; color:#C8F135; line-height:1.3;">PRÁCTICA<br>DIRIGIDA</span>
-          </div>
-
-          <div style="flex:0.5; height:1px; border-top:1.5px dashed rgba(200,241,53,0.3);"></div>
-
-          <!-- Paso 4 -->
-          <div class="flex flex-col items-center gap-2" style="flex:1;">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center" style="border:1.5px solid rgba(200,241,53,0.5); background:transparent;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="1.5"><rect x="3" y="3" width="4" height="14" rx="1"/><rect x="9" y="7" width="4" height="10" rx="1"/><rect x="15" y="5" width="4" height="12" rx="1"/></svg>
-            </div>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; text-align:center; color:#E2E8F0; line-height:1.3;">ANÁLISIS Y<br>MEJORA</span>
-          </div>
-
-          <div style="flex:0.5; height:1px; border-top:1.5px dashed rgba(200,241,53,0.3);"></div>
-
-          <!-- Paso 5 -->
-          <div class="flex flex-col items-center gap-2" style="flex:1;">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center" style="border:1.5px solid rgba(200,241,53,0.5); background:transparent;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F135" stroke-width="1.5"><path d="M8 21h8M12 17V21M5 3h14l-2 8H7L5 3z"/><path d="M7 11l5 3 5-3"/></svg>
-            </div>
-            <span style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; text-align:center; color:#E2E8F0; line-height:1.3;">RENDIMIENTO<br>EN PISTA</span>
-          </div>
-
-        </div>
+    <div class="journey-step">
+      <div class="journey-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 3v3"/>
+          <path d="M12 18v3"/>
+          <path d="M3 12h3"/>
+          <path d="M18 12h3"/>
+        </svg>
       </div>
-    </div>
-  </section>
-
-  <div class="h-line"></div>
-
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <!-- 3. BENEFICIOS — CARDS CON FLIP                               -->
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <section id="beneficios" class="py-24 px-6 relative" style="z-index:1;">
-    <div class="max-w-6xl mx-auto">
-
-      <div class="text-center mb-14 reveal">
-        <div class="sep"></div>
-        <div class="font-ui text-xs uppercase tracking-widest mb-3" style="color:#00F5FF; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:0.2em; font-size:0.65rem;">El Proceso de Transformación</div>
-        <h2 class="font-display font-black mb-4" style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.2rem,5vw,3.8rem); line-height:1.05;">
-          De <span style="color:#6B7280; text-decoration:line-through;">frustración perpetua</span><br>
-          a <span class="glow-cyan" style="color:#00F5FF;">velocidad de élite.</span>
-        </h2>
-        <p style="color:#8B9BB4; max-width:500px; margin:0 auto; line-height:1.6; font-size:0.95rem;">Estos no son beneficios genéricos. Son las transformaciones específicas que documentamos en nuestros alumnos.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-        <!-- CARD 1 -->
-        <div class="card-flip h-52 reveal" style="transition-delay:0s;">
-          <div class="card-flip-inner">
-            <div class="card-front" style="background:rgba(17,17,24,0.9); border:1px solid rgba(0,245,255,0.12);">
-              <div class="text-3xl mb-3">🎯</div>
-              <h3 class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; font-size:1.1rem; color:#E2E8F0;">Precisión en Frenada</h3>
-              <p style="color:#6B7280; font-size:0.82rem; line-height:1.55;">Pasarás de frenar por pánico a elegir cada punto de frenada con intención absoluta.</p>
-              <p class="mt-3 text-xs" style="color:#00F5FF; font-size:0.68rem;">Pasa el cursor para ver cómo →</p>
-            </div>
-            <div class="card-back" style="background:linear-gradient(135deg,rgba(0,245,255,0.1),rgba(168,85,247,0.1)); border:1px solid rgba(0,245,255,0.4);">
-              <div class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; color:#00F5FF; font-size:0.7rem; letter-spacing:0.15em;">RESULTADO DOCUMENTADO</div>
-              <p style="color:#E2E8F0; font-size:0.88rem; line-height:1.6;">Nuestros alumnos mejoran su distancia de frenada promedio en <strong style="color:#00F5FF;">un 34%</strong> en las primeras 4 sesiones. Sin cambiar el hardware.</p>
-              <div class="mt-4 pt-3" style="border-top:1px solid rgba(0,245,255,0.2);">
-                <span style="color:#A855F7; font-size:0.75rem;">— Validado con telemetría en 2.140 alumnos</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="card-flip h-52 reveal" style="transition-delay:0.08s;">
-          <div class="card-flip-inner">
-            <div class="card-front" style="background:rgba(17,17,24,0.9); border:1px solid rgba(168,85,247,0.12);">
-              <div class="text-3xl mb-3">📡</div>
-              <h3 class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; font-size:1.1rem; color:#E2E8F0;">Lectura de Telemetría</h3>
-              <p style="color:#6B7280; font-size:0.82rem; line-height:1.55;">Aprenderás a "ver" los datos que los demás ignoran y convertirlos en segundos.</p>
-              <p class="mt-3 text-xs" style="color:#A855F7; font-size:0.68rem;">Pasa el cursor para ver cómo →</p>
-            </div>
-            <div class="card-back" style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(0,245,255,0.1)); border:1px solid rgba(168,85,247,0.4);">
-              <div class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; color:#A855F7; font-size:0.7rem; letter-spacing:0.15em;">RESULTADO DOCUMENTADO</div>
-              <p style="color:#E2E8F0; font-size:0.88rem; line-height:1.6;">El 89% de alumnos en semana 2 ya pueden identificar exactamente <strong style="color:#A855F7;">dónde pierden tiempo</strong> con solo mirar una captura de telemetría.</p>
-              <div class="mt-4 pt-3" style="border-top:1px solid rgba(168,85,247,0.2);">
-                <span style="color:#00F5FF; font-size:0.75rem;">— Datos de cohorte 2024 Q3</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="card-flip h-52 reveal" style="transition-delay:0.16s;">
-          <div class="card-flip-inner">
-            <div class="card-front" style="background:rgba(17,17,24,0.9); border:1px solid rgba(0,245,255,0.12);">
-              <div class="text-3xl mb-3">🧠</div>
-              <h3 class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; font-size:1.1rem; color:#E2E8F0;">Mentalidad de Carrera</h3>
-              <p style="color:#6B7280; font-size:0.82rem; line-height:1.55;">La psicología del piloto ganador: gestión del error, control de adrenalina, toma de riesgo calculado.</p>
-              <p class="mt-3 text-xs" style="color:#00F5FF; font-size:0.68rem;">Pasa el cursor para ver cómo →</p>
-            </div>
-            <div class="card-back" style="background:linear-gradient(135deg,rgba(0,245,255,0.1),rgba(168,85,247,0.1)); border:1px solid rgba(0,245,255,0.4);">
-              <div class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; color:#00F5FF; font-size:0.7rem; letter-spacing:0.15em;">RESULTADO DOCUMENTADO</div>
-              <p style="color:#E2E8F0; font-size:0.88rem; line-height:1.6;">Los pilotos que completan el módulo de psicología cometen <strong style="color:#00F5FF;">un 61% menos errores</strong> bajo presión de carrera real que los que no lo hacen.</p>
-              <div class="mt-4 pt-3" style="border-top:1px solid rgba(0,245,255,0.2);">
-                <span style="color:#A855F7; font-size:0.75rem;">— Estudio interno con grupo de control</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 4 -->
-        <div class="card-flip h-52 reveal" style="transition-delay:0.24s;">
-          <div class="card-flip-inner">
-            <div class="card-front" style="background:rgba(17,17,24,0.9); border:1px solid rgba(168,85,247,0.12);">
-              <div class="text-3xl mb-3">✈️</div>
-              <h3 class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; font-size:1.1rem; color:#E2E8F0;">Pilotaje de Vuelo Real</h3>
-              <p style="color:#6B7280; font-size:0.82rem; line-height:1.55;">Procedimientos VFR e IFR que puedes aplicar directamente a licencias ANAC/FAA/EASA.</p>
-              <p class="mt-3 text-xs" style="color:#A855F7; font-size:0.68rem;">Pasa el cursor para ver cómo →</p>
-            </div>
-            <div class="card-back" style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(0,245,255,0.1)); border:1px solid rgba(168,85,247,0.4);">
-              <div class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; color:#A855F7; font-size:0.7rem; letter-spacing:0.15em;">RESULTADO DOCUMENTADO</div>
-              <p style="color:#E2E8F0; font-size:0.88rem; line-height:1.6;">Alumnos que cursaron nuestro módulo de vuelo reducen en <strong style="color:#A855F7;">un 40% el tiempo</strong> de formación práctica real en aeródromo al presentar menor curva de aprendizaje.</p>
-              <div class="mt-4 pt-3" style="border-top:1px solid rgba(168,85,247,0.2);">
-                <span style="color:#00F5FF; font-size:0.75rem;">— Reportado por 3 aeroclubes asociados</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 5 -->
-        <div class="card-flip h-52 reveal" style="transition-delay:0.32s;">
-          <div class="card-flip-inner">
-            <div class="card-front" style="background:rgba(17,17,24,0.9); border:1px solid rgba(0,245,255,0.12);">
-              <div class="text-3xl mb-3">🎖️</div>
-              <h3 class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; font-size:1.1rem; color:#E2E8F0;">Tácticas de Escuadra</h3>
-              <p style="color:#6B7280; font-size:0.82rem; line-height:1.55;">Comunicación militar adaptada, lectura de mapa en tiempo real y decisiones bajo fuego.</p>
-              <p class="mt-3 text-xs" style="color:#00F5FF; font-size:0.68rem;">Pasa el cursor para ver cómo →</p>
-            </div>
-            <div class="card-back" style="background:linear-gradient(135deg,rgba(0,245,255,0.1),rgba(168,85,247,0.1)); border:1px solid rgba(0,245,255,0.4);">
-              <div class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; color:#00F5FF; font-size:0.7rem; letter-spacing:0.15em;">RESULTADO DOCUMENTADO</div>
-              <p style="color:#E2E8F0; font-size:0.88rem; line-height:1.6;">Escuadras entrenadas bajo nuestro protocolo táctico ganan <strong style="color:#00F5FF;">un 71% más partidas</strong> competitivas en el primer mes versus su winrate anterior.</p>
-              <div class="mt-4 pt-3" style="border-top:1px solid rgba(0,245,255,0.2);">
-                <span style="color:#A855F7; font-size:0.75rem;">— Torneo APEX Cup 2024</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 6 -->
-        <div class="card-flip h-52 reveal" style="transition-delay:0.4s;">
-          <div class="card-flip-inner">
-            <div class="card-front" style="background:rgba(17,17,24,0.9); border:1px solid rgba(168,85,247,0.12);">
-              <div class="text-3xl mb-3">⚡</div>
-              <h3 class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; font-size:1.1rem; color:#E2E8F0;">Red de Pilotos Élite</h3>
-              <p style="color:#6B7280; font-size:0.82rem; line-height:1.55;">Acceso a +8.400 pilotos activos, sesiones de práctica grupales y coaching entre pares.</p>
-              <p class="mt-3 text-xs" style="color:#A855F7; font-size:0.68rem;">Pasa el cursor para ver cómo →</p>
-            </div>
-            <div class="card-back" style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(0,245,255,0.1)); border:1px solid rgba(168,85,247,0.4);">
-              <div class="font-ui font-bold mb-2" style="font-family:'Rajdhani',sans-serif; color:#A855F7; font-size:0.7rem; letter-spacing:0.15em;">LO QUE NO PUEDES COMPRAR</div>
-              <p style="color:#E2E8F0; font-size:0.88rem; line-height:1.6;">La comunidad privada es 24/7, con <strong style="color:#A855F7;">coaches disponibles</strong> en Discord, setups compartidos exclusivos y torneos internos con premios reales cada mes.</p>
-              <div class="mt-4 pt-3" style="border-top:1px solid rgba(168,85,247,0.2);">
-                <span style="color:#00F5FF; font-size:0.75rem;">— Valor estimado: $89/mes. Incluido.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="h-line"></div>
-
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <!-- 4. SIMULADOR INTERACTIVO — TELEMETRÍA                        -->
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <section id="simuladores" class="py-24 px-6 relative" style="z-index:1;">
-    <div class="max-w-6xl mx-auto">
-
-      <div class="text-center mb-14 reveal">
-        <div class="sep"></div>
-        <div class="font-ui text-xs uppercase tracking-widest mb-3" style="color:#A855F7; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:0.2em; font-size:0.65rem;">APEX Interactive Showcase</div>
-        <h2 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.1;">
-          Toca el sistema.<br><span class="glow-purple" style="color:#A855F7;">Descubre qué dominarás.</span>
-        </h2>
-      </div>
-
-      <div class="relative rounded-xl overflow-hidden scanline reveal" style="background:rgba(11,11,15,0.95); border:1px solid rgba(0,245,255,0.2); min-height:420px;">
-
-        <!-- HUD top bar -->
-        <div class="flex items-center justify-between px-5 py-3" style="border-bottom:1px solid rgba(0,245,255,0.12); background:rgba(0,245,255,0.03);">
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 rounded-full" style="background:#00F5FF; box-shadow:0 0 8px #00F5FF;"></div>
-            <span class="font-ui text-xs" style="font-family:'Rajdhani',sans-serif; font-weight:600; color:#00F5FF; font-size:0.7rem; letter-spacing:0.15em;">APEX TELEMETRY SYSTEM v4.2</span>
-          </div>
-          <div class="flex gap-4">
-            <span class="font-ui text-xs" style="font-family:'Rajdhani',sans-serif; color:#4A5568; font-size:0.65rem; letter-spacing:0.1em;">SYS: NOMINAL</span>
-            <span class="font-ui text-xs" style="font-family:'Rajdhani',sans-serif; color:#4A5568; font-size:0.65rem; letter-spacing:0.1em;">LAT: 1.82G</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
-
-          <!-- Panel izquierdo: lista de módulos -->
-          <div class="p-6" style="border-right:1px solid rgba(0,245,255,0.08);">
-            <p class="mb-5 text-xs" style="color:#6B7280; font-size:0.72rem; letter-spacing:0.05em;">Selecciona un módulo de entrenamiento:</p>
-            <div class="flex flex-col gap-3">
-              <template x-for="[key, node] in Object.entries(nodes)" :key="key">
-                <button
-                  @click="activeNode = activeNode === key ? null : key"
-                  class="flex items-center gap-4 p-3 rounded-lg transition-all text-left"
-                  :style="activeNode === key
-                    ? 'background:rgba(0,245,255,0.08);border:1px solid rgba(0,245,255,0.4);'
-                    : 'background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);'"
-                >
-                  <div class="node-pulse flex-shrink-0 w-3 h-3 rounded-full"
-                       :style="activeNode === key ? 'background:#00F5FF;box-shadow:0 0 12px #00F5FF;' : 'background:#1F2937;'"></div>
-                  <span class="font-ui font-bold"
-                        :style="activeNode === key ? 'color:#00F5FF;' : 'color:#8B9BB4;'"
-                        style="font-family:'Rajdhani',sans-serif; font-size:0.88rem; letter-spacing:0.05em; text-transform:uppercase;"
-                        x-text="node.title">
-                  </span>
-                  <span class="ml-auto text-xs" :style="activeNode === key ? 'color:#A855F7;' : 'color:#374151;'" style="font-size:0.68rem;">▶</span>
-                </button>
-              </template>
-            </div>
-          </div>
-
-          <!-- Panel derecho: detalle del módulo -->
-          <div class="p-6 flex items-center">
-            <div x-show="!activeNode" class="w-full text-center py-8">
-              <div class="text-4xl mb-3 opacity-30">⚡</div>
-              <p style="color:#374151; font-size:0.82rem;">Selecciona un módulo para ver el contenido</p>
-            </div>
-            <template x-if="activeNode && nodes[activeNode]">
-              <div class="w-full" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4" x-transition:enter-end="opacity-100 translate-x-0">
-                <div class="font-ui font-bold mb-1" style="font-family:'Rajdhani',sans-serif; color:#00F5FF; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;">// MÓDULO ACTIVO</div>
-                <h3 class="font-display font-black mb-4" style="font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:900; color:#E2E8F0;" x-text="nodes[activeNode].title"></h3>
-                <p style="color:#94A3B8; font-size:0.88rem; line-height:1.65;" x-text="nodes[activeNode].content"></p>
-                <div class="mt-5 p-3 rounded" style="background:rgba(0,245,255,0.06); border-left:3px solid #00F5FF;">
-                  <span class="font-ui font-bold text-xs" style="font-family:'Rajdhani',sans-serif; color:#00F5FF; font-size:0.72rem; letter-spacing:0.1em;" x-text="nodes[activeNode].stat"></span>
-                </div>
-              </div>
-            </template>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="h-line"></div>
-
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <!-- 5. PRUEBA SOCIAL — LIVE FEED                                 -->
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <section id="testimonios" class="py-24 overflow-hidden relative" style="z-index:1;">
-
-    <div class="max-w-6xl mx-auto px-6 mb-12 text-center reveal">
-      <div class="sep"></div>
-      <div class="font-ui text-xs uppercase tracking-widest mb-3" style="color:#00F5FF; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:0.2em; font-size:0.65rem;">Prueba Social · Live Feed</div>
-      <h2 class="font-display font-black" style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.1;">
-        +8.400 pilotos no pueden<br><span class="glow-cyan" style="color:#00F5FF;">estar todos equivocados.</span>
-      </h2>
+      <span>Fundamentos<br>de conducción</span>
     </div>
 
-    <!-- MARQUEE -->
-    <div style="overflow:hidden; mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);">
-      <div class="marquee-track">
-        <template x-for="i in 2">
-          <div class="flex gap-4" style="display:contents;">
+    <div class="journey-line"></div>
 
-            <div class="flex-shrink-0 p-5 rounded-xl" style="width:300px; background:rgba(17,17,24,0.9); border:1px solid rgba(0,245,255,0.12);">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#00F5FF,#A855F7); color:#0B0B0F;">CG</div>
-                <div>
-                  <div class="font-ui font-bold text-sm" style="font-family:'Rajdhani',sans-serif; color:#E2E8F0;">Carlos G.</div>
-                  <div class="text-xs" style="color:#A855F7; font-size:0.68rem;">iRacing · España</div>
-                </div>
-                <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
-              </div>
-              <p style="color:#94A3B8; font-size:0.8rem; line-height:1.55; font-style:italic;">"En 3 semanas bajé 2.1 segundos por vuelta en Spa. Mi rating de iRating subió 400 puntos. No lo creía posible."</p>
-            </div>
-
-            <div class="flex-shrink-0 p-5 rounded-xl" style="width:300px; background:rgba(17,17,24,0.9); border:1px solid rgba(168,85,247,0.12);">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#A855F7,#00F5FF); color:#0B0B0F;">VR</div>
-                <div>
-                  <div class="font-ui font-bold text-sm" style="font-family:'Rajdhani',sans-serif; color:#E2E8F0;">Valentina R.</div>
-                  <div class="text-xs" style="color:#00F5FF; font-size:0.68rem;">DCS World · México</div>
-                </div>
-                <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
-              </div>
-              <p style="color:#94A3B8; font-size:0.8rem; line-height:1.55; font-style:italic;">"Los procedimientos de vuelo por instrumentos me parecían imposibles. En 30 días ya vuelo ILS sin asistencia. La metodología es brutal."</p>
-            </div>
-
-            <div class="flex-shrink-0 p-5 rounded-xl" style="width:300px; background:rgba(17,17,24,0.9); border:1px solid rgba(0,245,255,0.12);">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#00F5FF,#06B6D4); color:#0B0B0F;">DF</div>
-                <div>
-                  <div class="font-ui font-bold text-sm" style="font-family:'Rajdhani',sans-serif; color:#E2E8F0;">Diego F.</div>
-                  <div class="text-xs" style="color:#A855F7; font-size:0.68rem;">ArmA · Argentina</div>
-                </div>
-                <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
-              </div>
-              <p style="color:#94A3B8; font-size:0.8rem; line-height:1.55; font-style:italic;">"El módulo táctico cambió completamente cómo me comunico con mi escuadra. Ganamos el torneo regional en nuestra primera participación."</p>
-            </div>
-
-            <div class="flex-shrink-0 p-5 rounded-xl" style="width:300px; background:rgba(17,17,24,0.9); border:1px solid rgba(168,85,247,0.12);">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#A855F7,#EC4899); color:#fff;">LP</div>
-                <div>
-                  <div class="font-ui font-bold text-sm" style="font-family:'Rajdhani',sans-serif; color:#E2E8F0;">Lucía P.</div>
-                  <div class="text-xs" style="color:#00F5FF; font-size:0.68rem;">F1 2024 · Colombia</div>
-                </div>
-                <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
-              </div>
-              <p style="color:#94A3B8; font-size:0.8rem; line-height:1.55; font-style:italic;">"Soy mujer en una comunidad mayoritariamente masculina y APEX me dio las herramientas para destacar puramente por mis habilidades. Top 5 online."</p>
-            </div>
-
-            <div class="flex-shrink-0 p-5 rounded-xl" style="width:300px; background:rgba(17,17,24,0.9); border:1px solid rgba(0,245,255,0.12);">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#00F5FF,#A855F7); color:#0B0B0F;">TN</div>
-                <div>
-                  <div class="font-ui font-bold text-sm" style="font-family:'Rajdhani',sans-serif; color:#E2E8F0;">Tomás N.</div>
-                  <div class="text-xs" style="color:#A855F7; font-size:0.68rem;">Assetto Corsa · Chile</div>
-                </div>
-                <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
-              </div>
-              <p style="color:#94A3B8; font-size:0.8rem; line-height:1.55; font-style:italic;">"Empecé sin volante, con un control de Xbox. Me enseñaron a aprovechar cada herramienta. Ahora compito en ligas semi-profesionales."</p>
-            </div>
-
-          </div>
-        </template>
+    <div class="journey-step active">
+      <div class="journey-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="3"/>
+          <circle cx="12" cy="12" r="1"/>
+        </svg>
       </div>
+      <span>Práctica<br>Dirigida</span>
     </div>
 
-    <!-- NOTIFICATION POPUP -->
-    <div x-show="notifVisible"
-         class="fixed bottom-6 left-6 z-40 max-w-xs"
-         :class="notifExiting ? 'notif-exit' : 'notif-slide'">
-      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:rgba(17,17,24,0.97); border:1px solid rgba(0,245,255,0.3); box-shadow:0 0 30px rgba(0,245,255,0.15);">
-        <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style="background:linear-gradient(135deg,#00F5FF,#A855F7); color:#0B0B0F;" x-text="notification ? notification.user.slice(0,2) : ''"></div>
+    <div class="journey-line"></div>
+
+    <div class="journey-step">
+      <div class="journey-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M8 16V11"/>
+          <path d="M12 16V8"/>
+          <path d="M16 16V13"/>
+        </svg>
+      </div>
+      <span>Análisis<br>y mejora</span>
+    </div>
+
+    <div class="journey-line"></div>
+
+    <div class="journey-step">
+      <div class="journey-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M8 15l4-7 4 7"/>
+          <path d="M10 13h4"/>
+        </svg>
+      </div>
+      <span>Rendimiento<br>en pista</span>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<section id="beneficios" class="why-section">
+
+
+
+  <div class="why-interactive">
+
+    <!-- CARD 1 -->
+    <button class="why-card">
+
+      <div class="why-card-icon">
+        <img src="assets/icon-simracing.png" alt="">
+      </div>
+
+      <span class="why-number">01</span>
+
+      <h3>SIM RACING</h3>
+
+      <p>
+        Entrenás en una cabina profesional diseñada para repetir,
+        analizar y perfeccionar cada vuelta.
+      </p>
+
+      <div class="why-card-more">+</div>
+
+    </button>
+
+    <!-- CARD 2 -->
+    <button class="why-card">
+
+      <div class="why-card-icon">
+        <img src="assets/icon-telemetria.png" alt="">
+      </div>
+
+      <span class="why-number">02</span>
+
+      <h3>TELEMETRÍA</h3>
+
+      <p>
+        Transformá sensaciones en datos para detectar dónde
+        ganás o perdés tiempo en pista.
+      </p>
+
+      <div class="why-card-more">+</div>
+
+    </button>
+
+    <!-- CARD 3 -->
+    <button class="why-card">
+
+      <div class="why-card-icon">
+        <img src="assets/icon-coaching.png" alt="">
+      </div>
+
+      <span class="why-number">03</span>
+
+      <h3>COACHING</h3>
+
+      <p>
+        Recibí seguimiento personalizado para acelerar
+        tu progreso y corregir errores técnicos.
+      </p>
+
+      <div class="why-card-more">+</div>
+
+    </button>
+
+  </div>
+
+</section>
+
+  <section id="simuladores" class="sim360-section">
+  <div class="sim360-wrap">
+
+    <div class="sim360-title">
+      <h2>TU PUESTO DE <span>CONDUCCIÓN</span></h2>
+      <p>Conocé cada parte del simulador y cómo se entrena técnica, control y rendimiento.</p>
+    </div>
+
+    <div class="sim360-card" id="sim360Drag">
+      <img
+        src="assets/simulador.jpg"
+        class="sim360-img"
+        draggable="false"
+        alt="Simulador APEX"
+      >
+
+      <div class="sim-point" style="top:32%; left:33%;">
+        <button class="sim-hotspot">+</button>
+        <div class="sim-popover">
+          <button class="sim-close">×</button>
+          <h3>Pantalla curva</h3>
+          <p>Campo visual amplio para máxima inmersión y lectura precisa de pista.</p>
+        </div>
+      </div>
+
+      <div class="sim-point" style="top:48%; left:48%;">
+        <button class="sim-hotspot">+</button>
+        <div class="sim-popover">
+          <button class="sim-close">×</button>
+          <h3>Volante Pro</h3>
+          <p>Force feedback preciso para sentir curvas, vibraciones y pérdida de agarre.</p>
+        </div>
+      </div>
+
+      <div class="sim-point" style="top:65%; left:35%;">
+        <button class="sim-hotspot">+</button>
+        <div class="sim-popover">
+          <button class="sim-close">×</button>
+          <h3>Pedales</h3>
+          <p>Frenada y aceleración progresiva para mejorar consistencia vuelta a vuelta.</p>
+        </div>
+      </div>
+
+      <div class="sim-point" style="top:38%; left:68%;">
+        <button class="sim-hotspot">+</button>
+        <div class="sim-popover">
+          <button class="sim-close">×</button>
+          <h3>Butaca</h3>
+          <p>Postura estable y cómoda para sesiones largas de entrenamiento.</p>
+        </div>
+      </div>
+
+      <div class="sim-point" style="top:70%; left:63%;">
+        <button class="sim-hotspot">+</button>
+        <div class="sim-popover">
+          <button class="sim-close">×</button>
+          <h3>Estructura</h3>
+          <p>Base rígida que evita movimientos indeseados y mejora el control.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="statement" class="statement-section">
+
+  <div class="statement-copy">
+    <span>APEX SIM-RACING</span>
+
+    <h2>
+      NO VENÍS<br>
+      A JUGAR.
+    </h2>
+
+    <h3>
+      VENÍS<br>
+      A ENTRENAR.
+    </h3>
+
+    <p>
+      No se trata solo de conducir. Se trata de entender, corregir y mejorar. Sim Racing, telemetría y coaching para evolucionar vuelta tras vuelta.
+    </p>
+  </div>
+
+  <div class="statement-image">
+    <img src="assets/no jugás.png" alt="Piloto entrenando en simulador">
+  </div>
+
+</section>
+
+<section id="academia" class="academy-section">
+
+  <div class="academy-header">
+    <span>Nuestra academia</span>
+    <h2>DENTRO DE APEX</h2>
+    <p>
+      Desde tus primeras vueltas hasta el perfeccionamiento de tu técnica, encontrá todo lo necesario para desarrollar tu potencial al máximo.
+    </p>
+  </div>
+
+  <div class="academy-carousel">
+
+    <button class="academy-arrow academy-prev">‹</button>
+
+    <div class="academy-track">
+
+      <article class="academy-slide">
+        <img src="assets/piloto simulador.png" alt="Piloto entrenando en simulador">
         <div>
-          <div class="font-ui font-bold text-xs" style="font-family:'Rajdhani',sans-serif; color:#00F5FF; font-size:0.72rem; letter-spacing:0.05em;">
-            🔥 <span x-text="notification ? notification.user : ''"></span> acaba de inscribirse
-          </div>
-          <div class="text-xs mt-0.5" style="color:#6B7280; font-size:0.68rem;">
-            desde <span x-text="notification ? notification.city : ''"></span> hace <span x-text="notification ? notification.time : ''"></span>
-          </div>
+          <h3>Entrenamiento inmersivo</h3>
+          <p>Viví la experiencia de una cabina profesional desde el primer minuto.</p>
         </div>
-        <div class="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1" style="background:#00F5FF; animation:pulse-glow-anim 1s infinite;"></div>
-      </div>
+      </article>
+
+      <article class="academy-slide">
+        <img src="assets/close-up volante.png" alt="Volante profesional de simulación">
+        <div>
+          <h3>Equipamiento profesional</h3>
+          <p>Volante, pedales, butaca y pantalla preparados para entrenar con precisión.</p>
+        </div>
+      </article>
+
+      <article class="academy-slide">
+        <img src="assets/academia-3.jpg" alt="Análisis de telemetría">
+        <div>
+          <h3>Lectura de telemetría</h3>
+          <p>Analizamos datos reales para detectar dónde ganar tiempo en pista.</p>
+        </div>
+      </article>
+
+      <article class="academy-slide">
+        <img src="assets/academia-4.jpg" alt="Coach acompañando a piloto">
+        <div>
+          <h3>Coaching personalizado</h3>
+          <p>Un instructor te acompaña para corregir hábitos y mejorar tu técnica.</p>
+        </div>
+      </article>
+
     </div>
 
-  </section>
+    <button class="academy-arrow academy-next">›</button>
+
+  </div>
+
+  <div class="academy-stats">
+
+  <div class="academy-stat">
+    <strong>+500</strong>
+    <span>vueltas analizadas</span>
+  </div>
+
+  <div class="academy-stat">
+    <strong>+120</strong>
+    <span>alumnos entrenados</span>
+  </div>
+
+  <div class="academy-stat">
+    <strong>92%</strong>
+    <span>mejoran su consistencia</span>
+  </div>
+
+  <div class="academy-stat">
+    <strong>4.8</strong>
+    <span>valoración promedio</span>
+  </div>
+
+</div>
+
+</section>
+
+
+<section id="cursos" class="courses-section">
+
+  <div class="courses-header">
+    <span>Programas de entrenamiento</span>
+    <h2>Elegí tu línea de carrera.</h2>
+    <p>Cada curso trabaja una etapa distinta: técnica, control, análisis y rendimiento competitivo.</p>
+  </div>
+
+  <div class="courses-layout">
+
+    <div class="track-map">
+      <div class="track-line"></div>
+
+      <button class="course-node active" data-course="inicio" style="top:12%; left:18%;">01</button>
+      <button class="course-node" data-course="tecnica" style="top:38%; left:62%;">02</button>
+      <button class="course-node" data-course="telemetria" style="top:66%; left:30%;">03</button>
+      <button class="course-node" data-course="competencia" style="top:82%; left:76%;">04</button>
+    </div>
+
+    <div class="course-panel">
+
+      <article class="course-content active" id="curso-inicio">
+        <span>Curso 01</span>
+        <h3>Iniciación al Sim Racing</h3>
+        <p>Primer contacto con la cabina, postura, referencias visuales, frenado básico y control del auto.</p>
+        <ul>
+          <li>2 clases guiadas</li>
+          <li>Nivel inicial</li>
+          <li>Ideal para empezar desde cero</li>
+        </ul>
+      </article>
+
+      <article class="course-content" id="curso-tecnica">
+        <span>Curso 02</span>
+        <h3>Técnica de conducción</h3>
+        <p>Entrenamiento de trazadas, puntos de frenada, aceleración progresiva y consistencia por vuelta.</p>
+        <ul>
+          <li>4 clases prácticas</li>
+          <li>Nivel intermedio</li>
+          <li>Ejercicios por circuito</li>
+        </ul>
+      </article>
+
+      <article class="course-content" id="curso-telemetria">
+        <span>Curso 03</span>
+        <h3>Telemetría aplicada</h3>
+        <p>Lectura de datos reales para identificar errores, comparar vueltas y tomar decisiones de mejora.</p>
+        <ul>
+          <li>3 clases + análisis</li>
+          <li>Datos de frenada y aceleración</li>
+          <li>Comparación vuelta a vuelta</li>
+        </ul>
+      </article>
+
+      <article class="course-content" id="curso-competencia">
+        <span>Curso 04</span>
+        <h3>Preparación competitiva</h3>
+        <p>Simulación de clasificación, gestión de carrera, presión, estrategia y mentalidad de piloto.</p>
+        <ul>
+          <li>5 clases intensivas</li>
+          <li>Nivel avanzado</li>
+          <li>Simulación de carrera completa</li>
+        </ul>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="accion" class="action-section">
+
+  <div class="action-media">
+    <img src="assets/simulador-accion.png" alt="Simulador APEX en acción">
+  </div>
+
+  <div class="action-copy">
+    <span>Simulador en acción</span>
+    <h2>La pista empieza antes de acelerar.</h2>
+    <p>
+      Entrená referencias visuales, puntos de frenada y control del auto
+      en una experiencia inmersiva pensada para mejorar sesión tras sesión.
+    </p>
+  </div>
+
+</section>
+
+
+
+
+  <div class="h-line"></div>
+
+<section id="testimonios" class="testimonials-section">
+
+  <div class="testimonials-header">
+    <span>Experiencia de alumnos</span>
+    <h2>LO QUE CAMBIA CUANDO ENTRENÁS CON MÉTODO.</h2>
+    <p>Historias breves de pilotos que empezaron a medir, corregir y mejorar cada vuelta.</p>
+  </div>
+
+  <div class="testimonials-marquee">
+    <div class="testimonial-track">
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“La telemetría me mostró dónde perdía tiempo. Cambié mi forma de frenar.”</p>
+        <strong>Martín R.</strong>
+        <span>Assetto Corsa</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Cada sesión tiene objetivo, análisis y corrección. No se siente como venir a jugar.”</p>
+        <strong>Valentina G.</strong>
+        <span>iRacing</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Aprendí a repetir vueltas limpias. La consistencia fue el mayor cambio.”</p>
+        <strong>Tomás L.</strong>
+        <span>F1 / Sim Racing</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Antes manejaba por intuición. Ahora entiendo mis datos y sé qué corregir.”</p>
+        <strong>Lucía M.</strong>
+        <span>Telemetría</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“El coaching me ayudó a ordenar técnica, referencias y puntos de frenada.”</p>
+        <strong>Diego F.</strong>
+        <span>Coaching</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Bajé tiempos porque dejé de improvisar. Entrenar con método cambia todo.”</p>
+        <strong>Camila S.</strong>
+        <span>Performance</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Entendí que ser rápido no es acelerar más. Es decidir mejor cada curva.”</p>
+        <strong>Sofía P.</strong>
+        <span>Competición</span>
+      </article>
+
+      <!-- repetidos para loop continuo -->
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“La telemetría me mostró dónde perdía tiempo. Cambié mi forma de frenar.”</p>
+        <strong>Martín R.</strong>
+        <span>Assetto Corsa</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Cada sesión tiene objetivo, análisis y corrección. No se siente como venir a jugar.”</p>
+        <strong>Valentina G.</strong>
+        <span>iRacing</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Aprendí a repetir vueltas limpias. La consistencia fue el mayor cambio.”</p>
+        <strong>Tomás L.</strong>
+        <span>F1 / Sim Racing</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Antes manejaba por intuición. Ahora entiendo mis datos y sé qué corregir.”</p>
+        <strong>Lucía M.</strong>
+        <span>Telemetría</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“El coaching me ayudó a ordenar técnica, referencias y puntos de frenada.”</p>
+        <strong>Diego F.</strong>
+        <span>Coaching</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Bajé tiempos porque dejé de improvisar. Entrenar con método cambia todo.”</p>
+        <strong>Camila S.</strong>
+        <span>Performance</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>“Entendí que ser rápido no es acelerar más. Es decidir mejor cada curva.”</p>
+        <strong>Sofía P.</strong>
+        <span>Competición</span>
+      </article>
+
+    </div>
+  </div>
+
+</section>
 
   <div class="h-line"></div>
 
@@ -763,31 +925,39 @@
 
   </footer>
 
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <!-- COOKIE BANNER                                                 -->
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <div x-show="!cookieAccepted"
-       x-cloak
-       class="cookie-banner fixed bottom-0 left-0 right-0 z-50"
-       style="background:rgba(17,17,24,0.98); border-top:1px solid rgba(0,245,255,0.25); backdrop-filter:blur(12px);">
-    <div class="max-w-5xl mx-auto px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-start gap-3">
-        <span class="text-xl flex-shrink-0 mt-0.5">⚡</span>
-        <div>
-          <div class="font-ui font-bold text-sm" style="font-family:'Rajdhani',sans-serif; color:#E2E8F0; font-size:0.85rem;">Usamos cookies para acelerar tu telemetría.</div>
-          <p style="color:#6B7280; font-size:0.72rem; margin-top:2px;">Analizamos tu comportamiento en el sitio para ofrecerte el plan que más se ajusta a tu perfil de piloto.</p>
-        </div>
-      </div>
-      <div class="flex gap-3 flex-shrink-0">
-        <button @click="cookieAccepted = true" class="btn-cta px-5 py-2 rounded text-xs" style="font-size:0.72rem;">
-          Aceptar y Optimizar
-        </button>
-        <button @click="cookieAccepted = true" class="px-4 py-2 rounded text-xs font-ui font-bold" style="font-family:'Rajdhani',sans-serif; background:transparent; border:1px solid rgba(255,255,255,0.1); color:#6B7280; cursor:pointer; font-size:0.72rem; letter-spacing:0.08em;">
-          Solo básicas
-        </button>
-      </div>
+<!-- COOKIES -->
+<div id="cookieBanner" class="cookie-banner">
+
+  <div class="cookie-content">
+
+    <div class="cookie-text">
+      <strong>⚡ Experiencia APEX</strong>
+      <p>Utilizamos cookies para optimizar tu navegación.</p>
     </div>
+
+    <div class="cookie-actions">
+
+      <button id="acceptCookies" class="cookie-primary">
+        Aceptar
+      </button>
+
+      <button id="basicCookies" class="cookie-secondary">
+        Solo necesarias
+      </button>
+
+    </div>
+
   </div>
+
+</div>
+
+<div id="liveToast" class="live-toast">
+  <div class="live-dot"></div>
+  <div>
+    <strong id="toastTitle">Nuevo piloto en pista</strong>
+    <p id="toastText">Martín reservó una sesión de telemetría.</p>
+  </div>
+</div>
 
 </body>
 </html>
