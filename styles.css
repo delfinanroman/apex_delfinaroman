@@ -2136,3 +2136,334 @@ font-family:'Bebas Neue',sans-serif;
   color:rgba(255,255,255,.55);
   font-size:.82rem;
 }
+/* ===============================
+   MOBILE FIX GENERAL APEX
+================================ */
+
+@media (max-width: 768px){
+
+  body{
+    overflow-x:hidden;
+  }
+
+  section{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+
+  /* NAVBAR */
+  nav > div{
+    margin:12px 14px !important;
+    padding:14px 18px !important;
+    border-radius:16px !important;
+  }
+
+  nav .flex.items-center.gap-10{
+    display:none !important;
+  }
+
+  nav img{
+    height:34px !important;
+  }
+
+  nav .flex.items-center.gap-4{
+    gap:8px !important;
+  }
+
+  nav .flex.items-center.gap-4 > div{
+    display:none !important;
+  }
+
+  nav button{
+    padding:10px 14px !important;
+    font-size:.72rem !important;
+  }
+
+  /* HERO */
+  #hero{
+    min-height:100vh !important;
+  }
+
+  #hero > div[style*="padding-left"]{
+    padding-left:22px !important;
+    padding-right:22px !important;
+    padding-top:110px !important;
+    padding-bottom:220px !important;
+  }
+
+  #hero h1{
+    font-size:clamp(3.4rem,18vw,5.2rem) !important;
+    line-height:.9 !important;
+  }
+
+  #hero p{
+    font-size:.95rem !important;
+    max-width:300px !important;
+  }
+
+  .offer-timer{
+    font-size:.62rem !important;
+    padding:.5rem .7rem !important;
+  }
+
+  .hero-cta{
+    width:100% !important;
+    justify-content:center !important;
+  }
+
+  /* RECORRIDO HERO */
+  .hero-journey{
+    width:92% !important;
+    bottom:20px !important;
+    border-radius:24px !important;
+    overflow-x:auto !important;
+  }
+
+  .hero-journey-inner{
+    min-width:720px !important;
+    padding:18px 22px !important;
+  }
+
+  .journey-icon{
+    width:44px !important;
+    height:44px !important;
+  }
+
+  .journey-step span{
+    font-size:.62rem !important;
+  }
+
+  /* BENEFICIOS CARDS */
+  .why-section{
+    padding:80px 20px !important;
+  }
+
+  .why-interactive{
+    grid-template-columns:1fr !important;
+    max-width:360px !important;
+    gap:22px !important;
+  }
+
+  .why-card{
+    min-height:320px !important;
+    padding:32px 24px 80px !important;
+  }
+
+  .why-card-icon{
+    width:110px !important;
+    height:110px !important;
+  }
+
+  .why-number{
+    font-size:3rem !important;
+  }
+
+  .why-card h3{
+    font-size:2.4rem !important;
+  }
+
+  .why-card-more{
+    width:50px !important;
+    height:50px !important;
+    right:20px !important;
+    bottom:20px !important;
+  }
+
+  /* SIMULADOR */
+  .sim-fullscreen,
+  .sim360-section{
+    min-height:auto !important;
+    padding:90px 20px !important;
+  }
+
+  .sim360-title h2{
+    font-size:clamp(3rem,15vw,4.6rem) !important;
+  }
+
+  .sim360-title p{
+    font-size:.95rem !important;
+  }
+
+  .sim360-img,
+  .sim360-card{
+    border-radius:22px !important;
+  }
+
+  .sim-point,
+  .sim-hotspot{
+    width:34px !important;
+    height:34px !important;
+    font-size:1rem !important;
+  }
+
+  .sim-popover{
+    width:200px !important;
+    left:42px !important;
+    padding:14px !important;
+  }
+
+  /* STATEMENT */
+  .statement-section{
+    grid-template-columns:1fr !important;
+    padding:90px 20px !important;
+    gap:36px !important;
+  }
+
+  .statement-copy h2,
+  .statement-copy h3{
+    font-size:clamp(3rem,16vw,5rem) !important;
+  }
+
+  .statement-copy p{
+    font-size:.95rem !important;
+  }
+
+  .statement-image{
+    min-height:360px !important;
+    border-radius:24px !important;
+  }
+
+  /* ACADEMIA */
+  .academy-section{
+    padding:90px 20px !important;
+  }
+
+  .academy-header h2{
+    font-size:clamp(3rem,15vw,4.8rem) !important;
+  }
+
+  .academy-slide{
+    height:430px !important;
+  }
+
+  .academy-slide div{
+    left:24px !important;
+    right:24px !important;
+    bottom:28px !important;
+    text-align:left !important;
+    max-width:none !important;
+  }
+
+  .academy-slide h3{
+    font-size:2.6rem !important;
+  }
+
+  .academy-slide p{
+    font-size:.95rem !important;
+  }
+
+  .academy-arrow{
+    width:42px !important;
+    height:42px !important;
+    font-size:1.8rem !important;
+  }
+
+  .academy-prev{ left:12px !important; }
+  .academy-next{ right:12px !important; }
+
+  /* MÉTRICAS ACADEMIA */
+  .academy-metrics{
+    grid-template-columns:1fr 1fr !important;
+    gap:14px !important;
+  }
+
+  .academy-metric{
+    padding:24px 16px !important;
+  }
+
+  .academy-metric span{
+    font-size:3rem !important;
+  }
+
+  .academy-metrics-title h3{
+    font-size:clamp(2.5rem,12vw,4rem) !important;
+  }
+
+  /* CURSOS */
+  .courses-section{
+    padding:90px 20px !important;
+  }
+
+  .courses-header h2{
+    font-size:clamp(3rem,14vw,4.6rem) !important;
+  }
+
+  .courses-layout{
+    grid-template-columns:1fr !important;
+  }
+
+  .track-map{
+    min-height:360px !important;
+  }
+
+  .course-panel{
+    padding:30px 24px !important;
+  }
+
+  .course-content h3{
+    font-size:clamp(2.6rem,12vw,4rem) !important;
+  }
+
+  /* SIMULADOR EN ACCIÓN */
+  .action-section{
+    min-height:80vh !important;
+    padding:90px 20px !important;
+  }
+
+  .action-copy h2{
+    font-size:clamp(3.2rem,15vw,5rem) !important;
+  }
+
+  .action-copy p{
+    font-size:.95rem !important;
+  }
+
+  /* TESTIMONIOS */
+  .testimonials-section{
+    padding:90px 0 !important;
+  }
+
+  .testimonials-header h2{
+    font-size:clamp(3rem,14vw,4.8rem) !important;
+  }
+
+  .testimonial-card{
+    width:300px !important;
+    min-height:230px !important;
+    padding:24px !important;
+  }
+
+  .testimonial-card p{
+    font-size:.95rem !important;
+  }
+
+  .testimonial-track{
+    animation-duration:55s !important;
+  }
+
+  /* COOKIE */
+  .cookie-banner{
+    width:90vw !important;
+    bottom:18px !important;
+    padding:18px !important;
+  }
+
+  .cookie-content{
+    flex-direction:column !important;
+    gap:14px !important;
+  }
+
+  .cookie-actions{
+    width:100% !important;
+  }
+
+  .cookie-actions button{
+    flex:1 !important;
+  }
+
+  /* BOTÓN ARRIBA */
+  .back-to-top{
+    right:18px !important;
+    bottom:90px !important;
+  }
+}
